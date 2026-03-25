@@ -78,8 +78,17 @@ export function collectCSSVars(): CSSVarCollection {
   });
 
   // 3. Resolve each variable using getComputedStyle (browser resolves all var() chains)
+  //    Try multiple context elements — vars may be scoped to specific selectors
   const resolved = new Map<string, string>();
-  const contextElements = [document.documentElement, document.body, ...inlineElements];
+  const contextElements: Element[] = [
+    document.documentElement,
+    document.body,
+    ...inlineElements,
+    // WordPress and theme frameworks often scope vars to wrapper divs
+    ...Array.from(document.querySelectorAll(
+      "[class*='wp-'], [class*='theme'], [data-theme], main, #app, #__next, #root"
+    )).slice(0, 10),
+  ];
 
   for (const name of rawEntries.keys()) {
     for (const el of contextElements) {
@@ -117,6 +126,7 @@ function collectVarEntriesFromRuleList(
   entries: Map<string, string>
 ): void {
   for (const rule of rules) {
+    // Extract custom properties from any rule that has a style declaration
     if (rule instanceof CSSStyleRule) {
       for (let i = 0; i < rule.style.length; i++) {
         const prop = rule.style[i];
@@ -124,11 +134,15 @@ function collectVarEntriesFromRuleList(
           entries.set(prop, rule.style.getPropertyValue(prop).trim());
         }
       }
-    } else if (
-      rule instanceof CSSMediaRule ||
-      rule instanceof CSSSupportsRule
-    ) {
-      collectVarEntriesFromRuleList(rule.cssRules, entries);
+    }
+    // Recurse into any grouping rule: @media, @supports, @layer, @container, etc.
+    try {
+      const nested = (rule as CSSGroupingRule).cssRules;
+      if (nested?.length) {
+        collectVarEntriesFromRuleList(nested, entries);
+      }
+    } catch {
+      // Not a grouping rule or cssRules not accessible
     }
   }
 }
