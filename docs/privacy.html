@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — BacktraceDesign</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #1f2937; line-height: 1.7; -webkit-font-smoothing: antialiased;
+      background: #f9fafb;
+    }
+    .container {
+      max-width: 680px; margin: 0 auto; padding: 80px 24px;
+    }
+    .back {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; color: #6366f1; text-decoration: none; margin-bottom: 32px;
+    }
+    .back:hover { text-decoration: underline; }
+    h1 {
+      font-size: 32px; font-weight: 800; color: #111827;
+      letter-spacing: -0.02em; margin-bottom: 8px;
+    }
+    .updated {
+      font-size: 14px; color: #6b7280; margin-bottom: 40px;
+    }
+    h2 {
+      font-size: 18px; font-weight: 700; color: #111827;
+      margin-top: 32px; margin-bottom: 12px;
+    }
+    p, ul { margin-bottom: 16px; font-size: 15px; color: #374151; }
+    ul { padding-left: 24px; }
+    li { margin-bottom: 8px; }
+    a { color: #6366f1; }
+    .footer {
+      margin-top: 48px; padding-top: 24px;
+      border-top: 1px solid #e5e7eb;
+      font-size: 13px; color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back">&larr; Back to BacktraceDesign</a>
+
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: March 26, 2026</p>
+
+    <h2>Summary</h2>
+    <p>BacktraceDesign does not collect, store, or transmit any personal data. The extension runs entirely in your browser.</p>
+
+    <h2>What the extension does</h2>
+    <p>When you right-click a webpage and select "Extract styles from this page", BacktraceDesign:</p>
+    <ul>
+      <li>Reads the CSS styles, custom properties, and computed styles of elements on the current page</li>
+      <li>Captures a screenshot of the visible tab for display in the style book header</li>
+      <li>Stores the extracted style data temporarily in <code>chrome.storage.session</code> (browser session storage that is cleared when the browser is closed)</li>
+      <li>Opens a new tab to display the generated style book</li>
+    </ul>
+
+    <h2>Data collection</h2>
+    <p>BacktraceDesign collects <strong>no personal data</strong>. Specifically:</p>
+    <ul>
+      <li>No personally identifiable information</li>
+      <li>No browsing history or web activity</li>
+      <li>No cookies or tracking identifiers</li>
+      <li>No analytics or telemetry</li>
+      <li>No data is sent to any server or third party</li>
+    </ul>
+
+    <h2>Data storage</h2>
+    <p>The only data stored is the extracted style information (colors, fonts, spacing values, etc.) from the page you chose to analyze. This is stored in <code>chrome.storage.session</code>, which is:</p>
+    <ul>
+      <li>Local to your browser only</li>
+      <li>Automatically cleared when the browser session ends</li>
+      <li>Never synced to any cloud service</li>
+    </ul>
+
+    <h2>Permissions</h2>
+    <p>The extension requests the following permissions, used solely for style extraction:</p>
+    <ul>
+      <li><strong>contextMenus</strong> — to add the "Extract styles" right-click menu item</li>
+      <li><strong>activeTab</strong> — to read styles from the page you choose to analyze</li>
+      <li><strong>scripting</strong> — to inject the extraction script into the current tab</li>
+      <li><strong>storage</strong> — to temporarily pass extracted data to the style book page</li>
+      <li><strong>host_permissions (&lt;all_urls&gt;)</strong> — to fetch cross-origin stylesheets (CSS files loaded from CDNs) that the target page uses</li>
+    </ul>
+
+    <h2>Third parties</h2>
+    <p>BacktraceDesign does not use any third-party services, SDKs, or analytics tools. No data is shared with or sold to any third party.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>If this policy is updated, the changes will be posted on this page with an updated date.</p>
+
+    <h2>Contact</h2>
+    <p>If you have questions about this privacy policy, contact <a href="mailto:backtracedesign@duque.ai">backtracedesign@duque.ai</a>.</p>
+
+    <div class="footer">
+      BacktraceDesign &middot; Built by <a href="https://duque.ai" style="color: #6b7280;">Daniel Duque</a>
+    </div>
+  </div>
+</body>
+</html>
