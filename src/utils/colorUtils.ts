@@ -135,7 +135,8 @@ export function extractColorsFromCSS(
 
 /**
  * Attach CSS variable names to matching entries in the color accumulator.
- * Call this after all colors have been collected.
+ * Also adds colors that only exist as CSS variable values (not in any DOM element).
+ *
  * varMap is a Map of --var-name → resolved CSS value.
  * tokenVarNames is the set of var names that are semantic tokens (var() references) —
  * these are excluded so that ColorInfo.varNames only contains base color names
@@ -152,10 +153,44 @@ export function attachVarNamesToColors(
     if (!rgb) continue;
     const hex = rgbToHex(...rgb);
     const existing = colorAcc.get(hex);
-    if (existing && !existing.varNames.includes(varName)) {
-      existing.varNames.push(varName);
+    if (existing) {
+      if (!existing.varNames.includes(varName)) {
+        existing.varNames.push(varName);
+      }
+    } else {
+      // Color only exists as a CSS variable value — add it to the accumulator
+      colorAcc.set(hex, {
+        hex,
+        rgb: `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`,
+        hsl: rgbToHsl(...rgb),
+        usageCount: 0,
+        contexts: ["variable"],
+        varNames: [varName],
+      });
     }
   }
+
+  // Sort varNames so intentional color names come first, framework utility names last
+  for (const info of colorAcc.values()) {
+    if (info.varNames.length > 1) {
+      info.varNames.sort(varNamePriority);
+    }
+  }
+}
+
+/** Sort comparator: prefer intentional color names, deprioritize framework utility vars */
+function varNamePriority(a: string, b: string): number {
+  return varNameScore(a) - varNameScore(b);
+}
+
+function varNameScore(name: string): number {
+  // Intentional color definitions get highest priority (lowest score)
+  if (/--(?:color|clr|brand|palette)-/.test(name)) return 0;
+  // Generic custom properties
+  if (/--(?:bg|text|border|accent)-/.test(name)) return 1;
+  // Framework utility vars get lowest priority
+  if (/--tw-|--gradient|--ring-|--shadow|--backdrop|--scroll|--divide/.test(name)) return 3;
+  return 2;
 }
 
 // ─── Var name formatting ──────────────────────────────────────────────────────
