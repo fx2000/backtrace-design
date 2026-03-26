@@ -1,8 +1,22 @@
 {
   "name": "backtrace-design",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "license": "MIT",
+  "author": {
+    "name": "Daniel Duque",
+    "url": "https://duque.ai",
+    "email": "backtracedesign@duque.ai"
+  },
+  "homepage": "https://backtracedesign.duque.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fx2000/backtrace-design"
+  },
+  "bugs": {
+    "url": "https://github.com/fx2000/backtrace-design/issues",
+    "email": "backtracedesign@duque.ai"
+  },
   "type": "module",
   "scripts": {
     "build:app": "vite build",

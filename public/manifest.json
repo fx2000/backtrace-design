@@ -1,8 +1,10 @@
 {
   "manifest_version": 3,
   "name": "BacktraceDesign",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Extract design language from any website and generate a style book.",
+  "author": "Daniel Duque",
+  "homepage_url": "https://backtracedesign.duque.ai",
   "permissions": [
     "contextMenus",
     "activeTab",
