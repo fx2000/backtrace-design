@@ -4,13 +4,14 @@ import Section from "./Section";
 
 interface Props {
   borderRadius: BorderRadiusToken[];
+  noPageBreak?: boolean;
 }
 
-export default function BorderRadius({ borderRadius }: Props) {
+export default function BorderRadius({ borderRadius, noPageBreak }: Props) {
   if (!borderRadius.length) return null;
 
   return (
-    <Section title="Border Radius">
+    <Section title="Border Radius" noPageBreak={noPageBreak}>
       <div className="flex flex-wrap gap-6">
         {borderRadius.map((r) => (
           <div key={r.value} className="flex flex-col items-center gap-2">

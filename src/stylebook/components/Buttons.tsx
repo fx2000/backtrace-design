@@ -3,13 +3,14 @@ import Section from "./Section";
 
 interface Props {
   buttons: ButtonStyle[];
+  noPageBreak?: boolean;
 }
 
-export default function Buttons({ buttons }: Props) {
+export default function Buttons({ buttons, noPageBreak }: Props) {
   if (!buttons.length) return null;
 
   return (
-    <Section title="Buttons">
+    <Section title="Buttons" noPageBreak={noPageBreak}>
       <div className="flex flex-wrap gap-4">
         {buttons.map((b, i) => (
           <div key={i} className="flex flex-col items-center gap-2">

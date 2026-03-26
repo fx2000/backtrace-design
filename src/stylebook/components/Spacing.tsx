@@ -3,15 +3,16 @@ import Section from "./Section";
 
 interface Props {
   spacing: SpacingToken[];
+  noPageBreak?: boolean;
 }
 
-export default function Spacing({ spacing }: Props) {
+export default function Spacing({ spacing, noPageBreak }: Props) {
   if (!spacing.length) return null;
 
   const max = Math.max(...spacing.map((s) => s.px));
 
   return (
-    <Section title="Spacing & Grid">
+    <Section title="Spacing & Grid" noPageBreak={noPageBreak}>
       <div className="space-y-3">
         {spacing.map((s) => (
           <div key={s.value} className="flex items-center gap-4">

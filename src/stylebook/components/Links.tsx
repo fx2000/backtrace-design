@@ -4,13 +4,14 @@ import Section from "./Section";
 
 interface Props {
   links: LinkStyle[];
+  noPageBreak?: boolean;
 }
 
-export default function Links({ links }: Props) {
+export default function Links({ links, noPageBreak }: Props) {
   if (!links.length) return null;
 
   return (
-    <Section title="Links">
+    <Section title="Links" noPageBreak={noPageBreak}>
       <div className="space-y-4">
         {links.map((l, i) => {
           const readable = ensureReadableOnWhite(l.color);

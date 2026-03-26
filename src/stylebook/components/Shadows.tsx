@@ -4,13 +4,14 @@ import Section from "./Section";
 
 interface Props {
   shadows: ShadowToken[];
+  noPageBreak?: boolean;
 }
 
-export default function Shadows({ shadows }: Props) {
+export default function Shadows({ shadows, noPageBreak }: Props) {
   if (!shadows.length) return null;
 
   return (
-    <Section title="Shadows">
+    <Section title="Shadows" noPageBreak={noPageBreak}>
       <div className="flex flex-wrap gap-8">
         {shadows.map((s, i) => (
           <div key={i} className="flex flex-col items-center gap-3">
