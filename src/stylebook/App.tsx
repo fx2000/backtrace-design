@@ -24,7 +24,9 @@ export default function App() {
           setData(result.stylebookData as ExtractedStyles);
           injectGoogleFonts(result.stylebookData.fonts);
         } else {
-          setError("No style data found. Right-click a page and choose 'Extract styles from this page'.");
+          setError(
+            "No style data found. Right-click a page and choose 'Extract styles from this page'.",
+          );
         }
       })
       .catch(() => {
@@ -43,7 +45,9 @@ export default function App() {
   if (!data) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-gray-500 text-lg animate-pulse">Loading style book…</p>
+        <p className="text-gray-500 text-lg animate-pulse">
+          Loading style book…
+        </p>
       </div>
     );
   }
@@ -94,7 +98,9 @@ export default function App() {
 
 function injectGoogleFonts(fonts: FontFamily[]) {
   const googleUrls = new Set(
-    fonts.filter((f) => f.source === "google" && f.googleUrl).map((f) => f.googleUrl!)
+    fonts
+      .filter((f) => f.source === "google" && f.googleUrl)
+      .map((f) => f.googleUrl!),
   );
   for (const url of googleUrls) {
     if (!document.querySelector(`link[href="${url}"]`)) {
