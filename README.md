@@ -4,7 +4,7 @@ A Chrome Extension that extracts the design language of any website and generate
 
 Useful for designers who want a quick, preliminary style reference from a live site without digging through DevTools or source files.
 
-**[Website](https://backtracedesign.duque.ai)** &middot; **[Live Demo](https://backtracedesign.duque.ai/demo.html)** &middot; **[Report a Bug](https://github.com/fx2000/backtrace-design/issues)**
+**[Install from Chrome Web Store](https://chromewebstore.google.com/detail/backtracedesign/mkbgionoaphpajimmjmialbihihaihke)** &middot; **[Website](https://backtracedesign.duque.ai)** &middot; **[Live Demo](https://backtracedesign.duque.ai/demo.html)** &middot; **[Report a Bug](https://github.com/fx2000/backtrace-design/issues)**
 
 ---
 
@@ -101,7 +101,7 @@ docs/
 - [ ] Figma Variables import format
 - [ ] More component types: form inputs, badges, cards
 - [ ] Interactive stylebook (edit/override extracted values)
-- [ ] Chrome Web Store listing
+- [x] Chrome Web Store listing
 
 ---
 
